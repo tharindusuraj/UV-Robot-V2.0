@@ -249,15 +249,7 @@ void Cal_Lamp_Hours(){
   }
 }
 
-//This will trigger automatically when the event occurs
-void receiveEvent(int howMany){
-  int i = 0;
-  while(1 < Wire.available()){ // loop through all but the last
-    int c = Wire.read(); // receive byte as a character
-    obstacle_status[i] = c;
-    i++;
-  }
-}
+
 
 //Read eeprom values
 int readFromEEPROM(int address)
