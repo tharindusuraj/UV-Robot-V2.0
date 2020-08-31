@@ -35,10 +35,10 @@ Adafruit_SSD1306 display(OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
 #define M1CC PA1
 #define M1CW PA0
 
-
 #if (SSD1306_LCDHEIGHT != 32)
 #error("Height incorrect, please fix Adafruit_SSD1306.h!");
 #endif
+
 
 #define MAX_ROBOT_SPEEDR 120     //Right Motor Speed
 #define MAX_ROBOT_SPEEDL 120     //Left Motor Speed
@@ -96,7 +96,7 @@ void setup()   {
   LAMP_HOUR = readFromEEPROM(lamp_hour_addr);        //get the lamp minutecount from EEPROM
   LAMP_MIN  = readFromEEPROM(lamp_min_addr);
 
-  delay(30000)                        //wait 30 seconds to initialize PIR
+  delay(30000);                        //wait 30 seconds to initialize PIR
   tone(buzzer,300);                   //short beep after initialization
   delay(500);
   noTone(buzzer);
@@ -113,11 +113,12 @@ oled ();
 Cal_Lamp_Hours();
 }
 
-void testscrolltext(void) {
-  display.setTextSize(2);
-  display.setTextColor(WHITE);
-  display.setCursor(10,0);
-  display.clearDisplay();
-  display.println("scroll");
-  display.display();
- }
+//This will trigger automatically when the event occurs
+void receiveEvent(int howMany){
+  int i = 0;
+  while(1 < Wire.available()){ // loop through all but the last
+    int c = Wire.read(); // receive byte as a character
+    obstacle_status[i] = c;
+    i++;
+  }
+}
