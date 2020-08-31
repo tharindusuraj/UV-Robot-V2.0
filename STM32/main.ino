@@ -58,7 +58,7 @@ int obstacle_status[4];         //obstacle status of (front. left, rear, right)
 
 unsigned long t1,t2,t3,t4;      //millis timer variables
 
-unsigned long LAMP_MIN,LAMP_HOUR;
+int LAMP_MIN,LAMP_HOUR;
 int lamp_min_addr = 1;            //EEPROM memory address
 int lamp_hour_addr = 10;
 
