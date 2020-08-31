@@ -8,3 +8,5 @@ Using Flash Memory as the EEPROM
 
 Since STM32F103 series microcontrollers do not have dedicated EEPROM, the flash memory can be used as its' EEPROM.
 For this, the EEPROM library should be replaced with the STM32 Duino EEPROM library.
+
+To bypass this function to test the code, comment out the Cal_Lamp_Hours() function.
